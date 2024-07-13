@@ -40,7 +40,7 @@
                 :key="item.id"
                 :label="item.name"
                 :name="item.id">
-              <router-view />
+              <component :is="currentComponent" />
             </el-tab-pane>
           </el-tabs>
         </el-main>
@@ -61,7 +61,8 @@ export default {
       editableTabsValue: "0",
       editableTabs: [],
       activeMenu: "", // 默认选中的菜单项
-      empMenu: []
+      empMenu: [],
+      currentComponent: null
     };
   },
   methods: {
@@ -71,21 +72,26 @@ export default {
     addTab(targetName) {
       let newTabName = targetName.id.toString();
       let newTabLabel = targetName.name;
-      let routeName = targetName.url.replace(/\//g, ''); // 修正路由名称
+
+      // 使用完整的路由路径
+      let routePath = `/staff/${targetName.url}`;
 
       // 判断目标路由是否已经打开
-      const isRouteActive = this.$route.name === routeName;
+      const isRouteActive = this.$route.path === routePath;
 
       if (!isRouteActive) {
-        // 如果目标路由未打开，则先添加标签页，再进行路由跳转
+        // 如果目标路由未打开，则先添加标签页
         this.editableTabs.push({
           id: newTabName,
           name: newTabLabel,
-          routeName: routeName
+          routePath: routePath // 存储完整的路由路径
         });
         this.editableTabsValue = newTabName;
 
-        this.$router.push({ name: routeName });
+        // 动态加载组件
+        import(`./${targetName.url}.vue`).then(component => {
+          this.currentComponent = component.default;
+        });
       } else {
         // 如果目标路由已打开，则直接设置 editableTabsValue
         this.editableTabsValue = newTabName;
