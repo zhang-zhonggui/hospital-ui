@@ -52,6 +52,11 @@ const routes = [
                 name: 'Log',
                 component: () => import('../views/log/log.vue')
             },
+            {
+                path: 'staffList',
+                name: 'StaffList',
+                component: () => import('../views/staff/staffList.vue')
+            },
         ]
     },
 ]
