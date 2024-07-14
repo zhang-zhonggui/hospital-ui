@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Index from '../views/index.vue'
 import ShowMessage from "@/views/news/showmessage.vue";
+import StaffInfo from "@/views/staff/info.vue"; // 引入 StaffInfo 组件
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ const routes = [
         path: '/index',
         name: 'index',
         component: Index
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import('../views/user/login.vue')
     },
     {
         path: "/news/showMessage",
@@ -29,25 +35,29 @@ const routes = [
         path: '/staff',
         name: 'StaffMain',
         component: () => import('../views/staff/staffMain.vue'),
-        redirect: '/staff/info',
+        redirect: '/staff/info', // 默认重定向到 StaffInfo
         children: [
-
             {
                 path: 'info',
                 name: 'StaffInfo',
-                component: () => import('../views/staff/info.vue')
+                component: StaffInfo // 直接使用引入的组件
+            },
+            {
+                path: 'iTunes',
+                name: 'StaffITunes',
+                component: () => import('../views/staff/iTunes.vue')
+            },
+            {
+                path: 'log',
+                name: 'Log',
+                component: () => import('../views/log/log.vue')
             },
         ]
     },
-
-    {
-        path: '/login',
-        name: 'Login',
-        component: () => import('../views/user/login.vue')
-    }
 ]
+
 const router = new VueRouter({
-    mode: 'history', // 使用 history 模式
+    mode: 'history',
     routes
 })
 
