@@ -57,6 +57,11 @@ const routes = [
                 name: 'StaffList',
                 component: () => import('../views/staff/staffList.vue')
             },
+            {
+                path: 'pstate',
+                name: 'pstate',
+                component: () => import('../views/staff/pstate.vue')
+            }
         ]
     },
 ]

@@ -17,7 +17,7 @@
         <el-button type="primary" @click="addStaffInfo()">添加</el-button>
         <el-button type="primary" @click="exportSta()">导出</el-button>
       </el-form-item>
-      <a href="/hospital/staff/temp.xlsx">下载模板</a>
+      <a href="@/assets/excel/temp.xlsx">下载模板</a>
       <form id="upform">
         <input name="hehe" type="file">
       </form>
