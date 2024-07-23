@@ -61,6 +61,31 @@ const routes = [
                 path: 'pstate',
                 name: 'pstate',
                 component: () => import('../views/staff/pstate.vue')
+            },
+            {
+                path: 'bumen',
+                name: 'bumen',
+                component: () => import('../views/staff/bumen.vue')
+            },
+            {
+                path: 'bState',
+                name: 'bState',
+                component: () => import('../views/staff/bState.vue')
+            },
+            {
+                path: 'ChaK',
+                name: 'ChaK',
+                component: () => import('../views/staff/ChaK.vue')
+            },
+            {
+                path: 'kState',
+                name: 'kState',
+                component: () => import('../views/staff/kState.vue')
+            },
+            {
+                path: 'pricing',
+                name: 'pricing',
+                component: () => import('../views/staff/pricing.vue')
             }
         ]
     },

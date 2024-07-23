@@ -35,7 +35,7 @@
         </el-table-column>
         <el-table-column
             prop="code"
-            label="操作条数">
+            label="状态码">
         </el-table-column>
         <el-table-column
             prop="time"

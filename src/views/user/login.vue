@@ -4,10 +4,10 @@
       <div class="logo"></div>
       <el-form :model="userForm" status-icon :rules="rules" ref="userForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="手机号" prop="telephone">
-          <el-input id="telephone" type="text" v-model="userForm.telephone" autocomplete="off"></el-input>
+          <el-input id="telephone" clearable type="text" v-model.trim="userForm.telephone" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="password">
-          <el-input id="password" type="password" v-model="userForm.password" autocomplete="off"></el-input>
+          <el-input id="password" clearable type="password" v-model.trim="userForm.password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item>
           <a :href="'adduser.html'">

@@ -4,7 +4,7 @@ import {getToken} from "@/utils/auth";
 // 基本配置
 const instance = axios.create({
     baseURL: '/api', // 根据实际情况修改API地址
-    timeout: 5000 // 设置超时时间，单位为ms
+    timeout: 500000 // 设置超时时间，单位为ms
 });
 
 /**
