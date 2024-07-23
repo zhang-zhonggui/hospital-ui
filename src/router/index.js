@@ -86,7 +86,17 @@ const routes = [
                 path: 'pricing',
                 name: 'pricing',
                 component: () => import('../views/staff/pricing.vue')
-            }
+            },
+            {
+                path: 'YK',
+                name: 'YK',
+                component: () => import('../views/staff/YK.vue')
+            },
+            {
+                path: 'CMessage',
+                name: 'CMessage',
+                component: () => import('../views/staff/CMessage.vue')
+            },
         ]
     },
 ]
