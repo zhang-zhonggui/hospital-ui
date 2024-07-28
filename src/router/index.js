@@ -97,6 +97,11 @@ const routes = [
                 name: 'CMessage',
                 component: () => import('../views/staff/CMessage.vue')
             },
+            {
+                path: 'addJournal',
+                name: 'addJournal',
+                component: () => import('../views/staff/addJournalism.vue')
+            },
         ]
     },
 ]
