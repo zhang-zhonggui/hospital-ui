@@ -1,78 +1,79 @@
 <template>
   <div>
     <el-form
-        id="journalismFrom"
-        :model="addInfo"
-        :rules="rules"
-        ref="addInfo"
-        label-width="100px"
-        class="demo-addInfo"
-        style="width: 1500px"
+      id="journalismFrom"
+      :model="addInfo"
+      :rules="rules"
+      ref="addInfo"
+      label-width="100px"
+      class="demo-addInfo"
+      style="width: 1500px"
     >
       <el-form-item label="新闻标题" prop="title">
         <el-input
-            id="titlestyle"
-            v-model="addInfo.title"
-            placeholder="请输入标题"
-            name="title"
+          id="titlestyle"
+          v-model="addInfo.title"
+          placeholder="请输入标题"
+          name="title"
         ></el-input>
       </el-form-item>
       <el-form-item label="日期时间" prop="date">
         <el-date-picker
-            id="datastyle"
-            v-model="addInfo.date"
-            type="datetime"
-            placeholder="选择日期时间"
-            align="left"
-            :picker-options="pickerOptions"
-            value-format="yyyy-MM-dd HH:mm:ss"
-            name="date"
+          id="datastyle"
+          v-model="addInfo.date"
+          type="datetime"
+          placeholder="选择日期时间"
+          align="left"
+          :picker-options="pickerOptions"
+          value-format="yyyy-MM-dd HH:mm:ss"
+          name="date"
         >
         </el-date-picker>
       </el-form-item>
       <el-form-item label="新闻类型" prop="tid">
         <select
-            id="journalismtype"
-            v-model="addInfo.tid"
-            placeholder="请选择新闻类型"
-            name="tid"
+          id="journalismtype"
+          v-model="addInfo.tid"
+          placeholder="请选择新闻类型"
+          name="tid"
         >
           <option
-              v-for="(t, i) in addType"
-              :key="i"
-              :label="t.tname"
-              :value="t.id"
+            v-for="(t, i) in addType"
+            :key="i"
+            :label="t.dictLabel"
+            :value="t.dictCode"
           ></option>
         </select>
       </el-form-item>
       <el-form-item label="作者" prop="writer">
         <el-input
-            id="writerstyle"
-            v-model="addInfo.writer"
-            placeholder="请输作者名称"
-            name="writer"
+          id="writerstyle"
+          v-model="addInfo.writer"
+          placeholder="请输作者名称"
+          name="writer"
         ></el-input>
       </el-form-item>
 
       <el-form-item label="新闻内容" prop="body">
         <div id="div1"></div>
         <textarea
-            id="text1"
-            style="width: 100%; height: 200px; display: none"
-            name="body"
+          id="text1"
+          v-model="addInfo.body"
+          placeholder="请输入新闻内容"
+          style="width: 100%; height: 200px; display: none"
+          name="body"
         ></textarea>
       </el-form-item>
 
       <el-form-item hidden="hidden">
         <el-input v-model="addInfo.state"></el-input>
       </el-form-item>
-
       <el-form-item>
         <el-button
-            type="primary"
-            @click="addJournalism"
-            :disabled="addState === 1"
-        >提交</el-button
+          type="primary"
+          @click="addJournalism"
+          :disabled="addState === 1"
+          >提交</el-button
         >
         <el-button @click="anew">重置</el-button>
       </el-form-item>
@@ -82,7 +83,8 @@
 
 <script>
 import E from "wangeditor";
-import { addJournalismApi, searchTypeApi } from "@/api/staff/addJournalism";
+import { addJournalismApi } from "@/api/staff/addJournalism";
+import { listData } from "@/api/staff/dict/data";
 
 export default {
   name: "addJournalism",
@@ -99,11 +101,11 @@ export default {
       addType: [],
       addState: 0,
       rules: {
-        title: [{required: true, message: "请输入标题", trigger: "blur"}],
-        date: [{required: true, message: "请选择日期时间", trigger: "blur"}],
-        tid: [{required: true, message: "请选择类型", trigger: "change"}],
+        title: [{ required: true, message: "请输入标题", trigger: "blur" }],
+        date: [{ required: true, message: "请选择日期时间", trigger: "blur" }],
+        tid: [{ required: true, message: "请选择类型", trigger: "change" }],
         writer: [
-          {required: true, message: "请输入作者名称", trigger: "blur"},
+          { required: true, message: "请输入作者名称", trigger: "blur" },
           {
             pattern: /^[\u4E00-\u9FA5]{2,10}(·[\u4E00-\u9FA5]{2,10}){0,2}$/,
             message: "输入正规名字",
@@ -145,13 +147,23 @@ export default {
   },
   methods: {
     async fetchJournalismTypes() {
-      try {
-        const response = await searchTypeApi();
-        this.addType = response.data;
-        console.log(this.addType)
-      } catch (error) {
-        console.error("获取新闻类型失败:", error);
-      }
+      listData({dictType: "news_type"})
+        .then((response) => {
+          this.addType = response.data;
+        })
+        .catch((error) => {
+          this.$message({
+            message: "获取新闻类型失败" + error,
+            type: "error",
+          });
+        });
+      // try {
+      //   const response = await searchTypeApi();
+      //   this.addType = response.data;
+      //   console.log(this.addType);
+      // } catch (error) {
+      //   console.error("获取新闻类型失败:", error);
+      // }
     },
     initEditor() {
       const editor = new E("#div1");
@@ -170,7 +182,7 @@ export default {
         "webp",
       ];
       editor.config.uploadImgMaxLength = 5; // 一次最多上传 5 个图片
-      editor.config.uploadImgParams = {dir: "bbs", x: 100};
+      editor.config.uploadImgParams = { dir: "bbs", x: 100 };
       editor.config.uploadFileName = "file";
       editor.config.uploadImgHooks = {
         customInsert: (insertImgFn, result) => {
@@ -188,7 +200,7 @@ export default {
       this.$refs["addInfo"].validate(async (valid) => {
         if (valid) {
           const formData = new FormData(
-              document.getElementById("journalismFrom")
+            document.getElementById("journalismFrom")
           );
           try {
             const response = await addJournalismApi(formData);

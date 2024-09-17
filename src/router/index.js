@@ -102,6 +102,11 @@ const routes = [
                 name: 'addJournal',
                 component: () => import('../views/staff/addJournalism.vue')
             },
+            {
+                path: 'dictManagement',
+                name: 'dictManagement',
+                component: () => import('../views/staff/DictManagement.vue')
+            }
         ]
     },
 ]
