@@ -462,22 +462,10 @@ export default {
     // 重置字典数据表单
     resetDataForm() {
       this.$nextTick(() => {
-        console.log(111111, this.dataDialogVisible);
         if (this.$refs.dataForm) {
-          console.log(22222);
           this.$refs.dataForm.resetFields();
         }
       });
-      // this.$refs.dataForm.resetFields();
-      // this.dataForm = {
-      //   dictCode: null,
-      //   dictLabel: "",
-      //   dictValue: "",
-      //   dictSort: 0,
-      //   status: "0",
-      //   remark: "",
-      //   dictType: this.dataForm.dictType, // 保留当前选中的字典类型
-      // };
     },
   },
 };

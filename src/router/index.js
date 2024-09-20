@@ -4,6 +4,7 @@ import Index from '../views/index.vue'
 import ShowMessage from "@/views/news/showmessage.vue";
 import StaffInfo from "@/views/staff/info.vue"; // 引入 StaffInfo 组件
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -101,6 +102,21 @@ const routes = [
                 path: 'addJournal',
                 name: 'addJournal',
                 component: () => import('../views/staff/addJournalism.vue')
+            },
+            {
+                path: 'checkJournalism',
+                name: 'checkJournalism',
+                component: () => import('../views/staff/CheckJournalism.vue')
+            },
+            {
+                path: 'news',
+                name: 'news',
+                component: () => import('../views/news/news.vue')
+            },
+            {
+                path: 'noPassNews',
+                name: 'noPassNews',
+                component: () => import('../views/news/NoPassNews.vue')
             },
             {
                 path: 'dictManagement',

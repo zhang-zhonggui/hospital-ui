@@ -72,7 +72,6 @@ export default {
       this.activeMenu = key;
     },
     addTab(targetName) {
-      console.log("addTab", targetName)
       let newTabName = targetName.id.toString();
       let newTabLabel = targetName.name;
       let routeName = targetName.url; // 假设您已经将子菜单的 url 属性设置为路由名称
@@ -104,38 +103,6 @@ export default {
         this.editableTabsValue = newTabName;
       }
     },
-
-    // addTab(targetName) {
-    //   let newTabName = targetName.id.toString();
-    //   let newTabLabel = targetName.name;
-    //   let routeName = targetName.routeName;
-    //   // 检查是否已经存在该路由的标签页
-    //   const tabExists = this.editableTabs.some(tab => tab.routeName === routeName);
-    //   // 如果不存在，才添加新标签页
-    //   if (!tabExists) {
-    //     this.editableTabs.push({
-    //       id: newTabName,
-    //       name: newTabLabel,
-    //       routeName: routeName
-    //     });
-    //   }
-    //   // 检查目标路由是否已经是当前路由
-    //   if (this.$route.name !== routeName) {
-    //     // 如果不是当前路由，才进行跳转
-    //     this.$router.push({name: routeName}).then(() => {
-    //       this.$nextTick(() => {
-    //         this.editableTabsValue = newTabName;
-    //       });
-    //     });
-    //   } else {
-    //     // 如果已经是当前路由，则直接切换到该标签页
-    //     this.editableTabsValue = newTabName;
-    //   }
-    // },
-    // removeTab(targetName) {
-    //   let tabs = this.editableTabs.filter(tab => tab.id !== targetName);
-    //   this.editableTabs = tabs;
-    // },
     removeTab(targetName) {
       // 从 editableTabs 数组中移除指定 id 的标签页
       let tabs = this.editableTabs.filter(tab => tab.id !== targetName);

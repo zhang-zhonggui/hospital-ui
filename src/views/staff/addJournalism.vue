@@ -157,13 +157,6 @@ export default {
             type: "error",
           });
         });
-      // try {
-      //   const response = await searchTypeApi();
-      //   this.addType = response.data;
-      //   console.log(this.addType);
-      // } catch (error) {
-      //   console.error("获取新闻类型失败:", error);
-      // }
     },
     initEditor() {
       const editor = new E("#div1");
