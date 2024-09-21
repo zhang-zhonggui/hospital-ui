@@ -3,16 +3,27 @@
     <div id="staff">
       <fieldset>
         <legend>员工登录</legend>
-        <el-form :model="staffInfo" status-icon :rules="rules" ref="staffInfo" label-width="100px"
-                 class="demo-ruleForm">
+        <el-form
+          :model="staffInfo"
+          status-icon
+          :rules="rules"
+          ref="staffInfo"
+          label-width="100px"
+          class="demo-ruleForm"
+        >
           <el-form-item label="账号" prop="username">
-            <el-input type="text" v-model="staffInfo.username"></el-input>
+            <el-input type="text" v-model.trim="staffInfo.username"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input type="password" v-model="staffInfo.password"></el-input>
+            <el-input
+              type="password"
+              v-model.trim="staffInfo.password"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm('staffInfo')">提交</el-button>
+            <el-button type="primary" @click="submitForm('staffInfo')"
+              >提交</el-button
+            >
             <el-button @click="resetForm('staffInfo')">重置</el-button>
           </el-form-item>
         </el-form>
@@ -21,8 +32,8 @@
   </div>
 </template>
 <script>
-import {login} from "@/api/staff/staff";
-import {setToken} from "@/utils/auth";
+import { login } from "@/api/staff/staff";
+import { setToken } from "@/utils/auth";
 
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
@@ -31,17 +42,20 @@ export default {
     return {
       staffInfo: {},
       rules: {
-        username: [{
-          required: true,
-          message: "账号不能为空"
-        }],
-        password: [{
-          required: true,
-          message: "账号不能为空"
-        }],
+        username: [
+          {
+            required: true,
+            message: "账号不能为空",
+          },
+        ],
+        password: [
+          {
+            required: true,
+            message: "账号不能为空",
+          },
+        ],
       },
-
-    }
+    };
   },
   methods: {
     resetForm(staffInfo) {
@@ -52,28 +66,25 @@ export default {
         if (valid) {
           login(this.staffInfo).then((response) => {
             if (response.code === 200) {
-              this.$router.push({name: "StaffMain"})
+              this.$router.push({ name: "StaffMain" });
               this.$notify({
                 title: "登录成功",
                 type: "success",
-              })
-              console.log("response:", response.data)
+              });
+              console.log("response:", response.data);
               //存储认证信息
-              setToken(response.data)
+              setToken(response.data);
             }
-          })
+          });
         } else {
           console.log("error submit!!");
           return false;
         }
       });
-    }
-
-  }
-
-}
+    },
+  },
+};
 </script>
-
 
 <style scoped>
 * {
