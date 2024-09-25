@@ -19,7 +19,7 @@
           </div>
         </el-col>
         <el-col :span="16">
-          <el-descriptions :column="2" border>
+          <el-descriptions :column="2">
             <el-descriptions-item label="姓名">{{ staff.name }}</el-descriptions-item>
             <el-descriptions-item label="年龄">{{ staff.age }}</el-descriptions-item>
             <el-descriptions-item label="学历">{{ staff.education }}</el-descriptions-item>
