@@ -69,8 +69,7 @@
 <script>
 import { getStaffInfo, uploadAvatar } from "@/api/staff/info";
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
-  name: "info",
+  name: "StaffInfo",
   data() {
     return {
       staff: {},
@@ -82,17 +81,22 @@ export default {
     };
   },
   mounted() {
-    getStaffInfo()
-      .then((response) => {
-        this.title = response.data.title.title;
-        this.staff = response.data;
-        this.handImg.url = response.data.handImg;
-      })
-      .catch((error) => {
-        console.error("获取新闻数据失败:", error);
-      });
+    this.getInfo();
+    this.getInfo();
   },
   methods: {
+    getInfo() {
+      getStaffInfo()
+        .then((response) => {
+          this.title = response.data.title.title;
+          this.staff = response.data;
+          this.handImg.url = response.data.handImg;
+        })
+        .catch((error) => {
+          console.error("获取新闻数据失败:", error);
+        });
+    },
+
     uploadImg() {
       document.getElementById("foo").click();
       // 手动触发文件选择后，立即监听 change 事件

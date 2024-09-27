@@ -71,7 +71,6 @@ export default {
                 title: "登录成功",
                 type: "success",
               });
-              console.log("response:", response.data);
               //存储认证信息
               setToken(response.data);
             }

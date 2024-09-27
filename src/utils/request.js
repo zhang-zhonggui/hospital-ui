@@ -13,7 +13,6 @@ const instance = axios.create({
 instance.interceptors.request.use(config => {
     // 设置请求头部分，这里举例使用了localStorage存储的token作为身份标识
     config.headers['Authorization'] = getToken();
-    console.log("token是" + getToken());
     return config;
 }, error => {
     console.log(error);
