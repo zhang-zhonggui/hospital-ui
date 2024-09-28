@@ -154,7 +154,7 @@ export default {
         this.empMenu = response.data.empMenu;
       } else {
         this.$message.error(response.msg);
-        this.$router.push({ name: "Login" });
+        this.$router.push({ name: "Staff" });
       }
     });
   },

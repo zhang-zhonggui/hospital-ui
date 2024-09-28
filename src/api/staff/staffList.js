@@ -67,3 +67,11 @@ export function getTitleList(){
         method: "get",
     })
 }
+export function exportStaffExcel(data){
+    return request({
+        url: "/staffSource/export",
+        method: "post",
+        data: data,
+        responseType: "blob"
+    })
+}

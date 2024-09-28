@@ -17,63 +17,65 @@
         <el-button type="primary" @click="addStaffInfo()">添加</el-button>
         <el-button type="primary" @click="exportSta()">导出</el-button>
       </el-form-item>
-      <a href="@/assets/excel/temp.xlsx">下载模板</a>
+      <!-- <a href="@/assets/excel/temp.xlsx">下载模板</a>
       <form id="upform">
-        <input name="hehe" type="file">
+        <input name="hehe" type="file" />
       </form>
-      <el-button type="primary" @click="uploadSta()">导入</el-button>
+      <el-button type="primary" @click="uploadSta()">导入</el-button> -->
+
     </el-form>
-    <el-table :data="staffArr" border style="width: 100%">
-      <el-table-column prop="id" label="编号" width="80">
-      </el-table-column>
+    <el-table :data="staffArr" style="width: 100%">
+      <el-table-column prop="id" label="编号" width="80"></el-table-column>
 
-      <el-table-column prop="name" label="姓名" width="180">
-      </el-table-column>
+      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
 
-      <el-table-column prop="age" label="年龄">
-      </el-table-column>
+      <el-table-column prop="age" label="年龄"></el-table-column>
 
-      <el-table-column prop="sex" label="性别">
-      </el-table-column>
+      <el-table-column prop="sex" label="性别"></el-table-column>
 
-      <el-table-column prop="education" label="学历">
-      </el-table-column>
+      <el-table-column prop="education" label="学历"></el-table-column>
 
-      <el-table-column prop="phone" label="电话">
-      </el-table-column>
+      <el-table-column prop="phone" label="电话"></el-table-column>
 
-      <el-table-column prop="buname.buname" label="部门">
-      </el-table-column>
+      <el-table-column prop="buname" label="部门"></el-table-column>
 
-      <el-table-column prop="title.title" label="职务">
-      </el-table-column>
+      <el-table-column prop="title" label="职务"></el-table-column>
 
-      <el-table-column prop="keshi.keshi" label="科室">
-      </el-table-column>
+      <el-table-column prop="keshi" label="科室"></el-table-column>
 
-      <el-table-column prop="state" label="状态">
-      </el-table-column>
+      <el-table-column prop="state" label="状态"></el-table-column>
 
       <el-table-column fixed="right" label="操作" width="100">
-
-
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="deleteStaff(scope.row.id)">删除</el-button>
-          <el-button type="text" size="small" @click="showUpdateDialog(scope.row.id)">编辑</el-button>
+          <el-button type="text" size="small" @click="deleteStaff(scope.row.id)"
+          >删除
+          </el-button
+          >
+          <el-button
+              type="text"
+              size="small"
+              @click="showUpdateDialog(scope.row.id)"
+          >编辑
+          </el-button
+          >
         </template>
       </el-table-column>
-
-
     </el-table>
     <el-pagination
         background
         @current-change="handleCurrentChange"
         layout="prev, pager, next"
-        :total="totalCount">
+        :total="totalCount"
+    >
     </el-pagination>
 
     <el-dialog title="添加员工" :visible.sync="dialogFormVisible">
-      <el-form :model="staffInfo" :rules="rules" ref="staffInfo" label-width="80px">
+      <el-form
+          :model="staffInfo"
+          :rules="rules"
+          ref="staffInfo"
+          label-width="80px"
+      >
         <el-form-item label="员工姓名" prop="name">
           <el-input v-model="staffInfo.name"></el-input>
         </el-form-item>
@@ -86,7 +88,10 @@
         </el-form-item>
 
         <el-form-item label="年龄" prop="age">
-          <el-input v-model="staffInfo.age" oninput="value=value.replace(/[^\d]/g,'')"></el-input>
+          <el-input
+              v-model="staffInfo.age"
+              oninput="value=value.replace(/[^\d]/g,'')"
+          ></el-input>
         </el-form-item>
 
         <el-form-item label="学历" prop="education">
@@ -94,7 +99,10 @@
         </el-form-item>
 
         <el-form-item label="员工电话" prop="phone">
-          <el-input v-model="staffInfo.phone" oninput="value=value.replace(/[^\d]/g,'')"></el-input>
+          <el-input
+              v-model="staffInfo.phone"
+              oninput="value=value.replace(/[^\d]/g,'')"
+          ></el-input>
         </el-form-item>
 
         <el-form-item label="部门" prop="bid">
@@ -112,18 +120,23 @@
         <el-form-item label="科室" prop="kid">
           <el-select v-model="staffInfo.kid" placeholder="请选择入职科室">
             <el-option
-                v-for="k  in  keshiArr"
+                v-for="k in keshiArr"
                 :label="k.keshi"
                 :key="k.id"
-                :value="k.id">
-
+                :value="k.id"
+            >
             </el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item label="职务" prop="tid">
           <el-select v-model="staffInfo.tid" placeholder="请选择职务或职称">
-            <el-option v-for="t  in  titleArr " :key="t.id" :label="t.title" :value="t.id"></el-option>
+            <el-option
+                v-for="t in titleArr"
+                :key="t.id"
+                :label="t.title"
+                :value="t.id"
+            ></el-option>
           </el-select>
         </el-form-item>
 
@@ -134,12 +147,10 @@
           </el-select>
         </el-form-item>
 
-
         <el-form-item>
           <el-button @click="dialogFormVisible = false">取 消</el-button>
           <el-button type="primary" @click="addStaff()">添 加</el-button>
         </el-form-item>
-
       </el-form>
     </el-dialog>
 
@@ -162,17 +173,32 @@
         </el-form-item>
         <el-form-item label="部门" prop="bid">
           <el-select v-model="staffInfo.bid" placeholder="请选择部门">
-            <el-option v-for="b in bunameArr" :key="b.id" :label="b.buname" :value="b.id"></el-option>
+            <el-option
+                v-for="b in bunameArr"
+                :key="b.id"
+                :label="b.buname"
+                :value="b.id"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="职务" prop="tid">
           <el-select v-model="staffInfo.tid" placeholder="请选择职务">
-            <el-option v-for="t  in  titleArr " :key="t.id" :label="t.title" :value="t.id"></el-option>
+            <el-option
+                v-for="t in titleArr"
+                :key="t.id"
+                :label="t.title"
+                :value="t.id"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="科室" prop="kid">
           <el-select v-model="staffInfo.kid" placeholder="请选择科室">
-            <el-option v-for="k  in  keshiArr " :key="k.id" :label="k.keshi" :value="k.id"></el-option>
+            <el-option
+                v-for="k in keshiArr"
+                :key="k.id"
+                :label="k.keshi"
+                :value="k.id"
+            ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="人员状态">
@@ -186,9 +212,7 @@
         <el-button @click="updateDialogFormVisible = false">取 消</el-button>
         <el-button type="primary" @click="updateSta()">修 改</el-button>
       </div>
-
     </el-dialog>
-
   </div>
 </template>
 <script>
@@ -200,7 +224,9 @@ import {
   update,
   uploadSta,
   getBranchList,
-  getKeshiList, getTitleList
+  getKeshiList,
+  getTitleList,
+  exportStaffExcel,
 } from "@/api/staff/staffList";
 
 export default {
@@ -208,14 +234,14 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        region: '',
-        date1: '',
-        date2: '',
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
         delivery: false,
         type: [],
-        resource: '',
-        desc: ''
+        resource: "",
+        desc: "",
       },
       bunameArr: [],
       keshiArr: [],
@@ -228,48 +254,34 @@ export default {
         pageCount: 10,
         name: "",
         keshi: "",
-        title: ""
+        title: "",
       },
       andleCurrentChange: {},
       totalCount: 0,
       updateDialogFormVisible: false,
       rules: {
-        name: [
-          {required: true, message: '请输入姓名', trigger: 'blur'},
-        ],
-        age: [
-          {required: true, message: '请输入年龄', trigger: 'blur'},
-        ],
-        sex: [
-          {required: true, message: '请输入性别', trigger: 'blur'},
-        ],
-        education: [
-          {required: true, message: '请输入学历', trigger: 'blur'},
-        ],
+        name: [{required: true, message: "请输入姓名", trigger: "blur"}],
+        age: [{required: true, message: "请输入年龄", trigger: "blur"}],
+        sex: [{required: true, message: "请输入性别", trigger: "blur"}],
+        education: [{required: true, message: "请输入学历", trigger: "blur"}],
         phone: [
-          {required: true, message: '请输入手机号', trigger: 'blur'},
-          {min: 11, max: 11, message: '请输入正确手机号', trigger: 'blur'},
+          {required: true, message: "请输入手机号", trigger: "blur"},
+          {min: 11, max: 11, message: "请输入正确手机号", trigger: "blur"},
         ],
-        bid: [
-          {required: true, message: '请选择部门', trigger: 'change'},
-        ],
-        kid: [
-          {required: true, message: '请选择科室', trigger: 'change'},
-        ],
+        bid: [{required: true, message: "请选择部门", trigger: "change"}],
+        kid: [{required: true, message: "请选择科室", trigger: "change"}],
         tid: [
-          {required: true, message: '请选择职称/职务', trigger: 'change'},
+          {required: true, message: "请选择职称/职务", trigger: "change"},
         ],
-        state: [
-          {required: true, message: '请选择状态', trigger: 'change'},
-        ],
-      }
-    }
+        state: [{required: true, message: "请选择状态", trigger: "change"}],
+      },
+    };
   },
   mounted() {
     this.getBranch();
     this.getKeshi();
     this.getTitle();
-    this.getData(1, 10)
+    this.getData(1, 10);
   },
   methods: {
     uploadSta() {
@@ -288,8 +300,7 @@ export default {
             type: "error",
           });
         }
-      })
-
+      });
     },
     addStaff() {
       this.$refs["staffInfo"].validate((valid) => {
@@ -310,32 +321,58 @@ export default {
                 type: "error",
               });
             }
-          })
+          });
         }
       });
-
     },
     updateSta() {
       update(this.staffInfo).then((response) => {
         if (response.code === 200) {
           this.updateDialogFormVisible = false;
           this.$refs["staffInfo"].resetFields();
-          this.$message.success('修改成功');
+          this.$message.success("修改成功");
           this.getData(1, 10);
         }
-      })
+      });
     },
     deleteStaff(id) {
-      this.$confirm('此操作将永久删除该人员, 是否继续?', '温馨提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
+      this.$confirm("此操作将永久删除该人员, 是否继续?", "温馨提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
       }).then(() => {
         del(id).then((response) => {
-          this.$message.success(response.msg)
-        })
+          this.$message.success(response.msg);
+        });
         this.getData(1, 10);
       });
+    },
+    exportSta() {
+      const fileName = '人员管理.xlsx'; // 将文件名提取为变量，方便修改
+
+      exportStaffExcel(this.searchInfo)
+          .then((blob) => {
+            // 使用URL.createObjectURL()创建临时URL
+            const url = URL.createObjectURL(blob);
+
+            // 创建<a>元素并设置属性
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName; // 设置下载文件名
+            // 将<a>元素添加到DOM并模拟点击
+            document.body.appendChild(a);
+            a.click();
+            // 下载完成后清理资源
+            setTimeout(() => { // 延迟移除，确保下载完成
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }, 100); // 可以根据实际情况调整延迟时间
+            this.$message.success("导出成功");
+          })
+          .catch((error) => {
+            console.error("下载 Excel 失败:", error);
+            this.$message.error("导出失败，请稍后重试");
+          });
     },
     getData(a, b) {
       this.searchInfo.pageNO = a;
@@ -345,8 +382,7 @@ export default {
           this.staffArr = response.data.list;
           this.totalCount = response.data.total;
         }
-      })
-
+      });
     },
     showUpdateDialog(id) {
       updateDialog(id).then((response) => {
@@ -354,17 +390,17 @@ export default {
           this.staffInfo = response.data;
           this.updateDialogFormVisible = true;
         }
-      })
+      });
     },
     addStaffInfo() {
       this.dialogFormVisible = true;
       this.staffInfo = {};
     },
     seachInfo() {
-      this.getData(1, 10)
+      this.getData(1, 10);
     },
     handleCurrentChange(val) {
-      this.getData(val, 10)
+      this.getData(val, 10);
     },
     getBranch() {
       getBranchList().then((response) => {
@@ -372,7 +408,7 @@ export default {
           this.bunameArr = response.data;
           this.dialogFormVisible = false;
         }
-      })
+      });
     },
     getKeshi() {
       getKeshiList().then((response) => {
@@ -380,7 +416,7 @@ export default {
           this.keshiArr = response.data;
           this.dialogFormVisible = false;
         }
-      })
+      });
     },
     getTitle() {
       getTitleList().then((response) => {
@@ -388,11 +424,9 @@ export default {
           this.titleArr = response.data;
           this.dialogFormVisible = false;
         }
-      })
+      });
     },
   },
-}
+};
 </script>
-<style scoped>
-
-</style>
+<style scoped></style>
