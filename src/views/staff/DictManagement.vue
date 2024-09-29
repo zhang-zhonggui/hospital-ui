@@ -7,34 +7,37 @@
             <div class="card-header">
               <span>字典类型</span>
               <el-button type="primary" size="small" @click="handleAddType">
-                <el-icon :size="16"><Plus /></el-icon>新增
+                <el-icon :size="16">
+                  <Plus/>
+                </el-icon>
+                新增
               </el-button>
             </div>
           </template>
           <el-input
-            v-model="typeSearch"
-            placeholder="请输入字典类型名称"
-            clearable
-            size="small"
-            style="margin-bottom: 10px"
+              v-model="typeSearch"
+              placeholder="请输入字典类型名称"
+              clearable
+              size="small"
+              style="margin-bottom: 10px"
           />
           <el-table
-            :data="filteredTypeList"
-            stripe
-            style="width: 100%"
-            @row-click="handleTypeSelect"
+              :data="filteredTypeList"
+              stripe
+              style="width: 100%"
+              @row-click="handleTypeSelect"
           >
-            <el-table-column prop="dictName" label="字典名称" width="180" />
-            <el-table-column prop="dictType" label="字典类型" width="180" />
+            <el-table-column prop="dictName" label="字典名称" width="180"/>
+            <el-table-column prop="dictType" label="字典类型" width="180"/>
             <el-table-column label="操作" width="180">
               <template #default="scope">
                 <el-button size="small" @click.stop="handleEditType(scope.row)">
                   编辑
                 </el-button>
                 <el-button
-                  size="small"
-                  type="danger"
-                  @click.stop="handleDeleteType(scope.row)"
+                    size="small"
+                    type="danger"
+                    @click.stop="handleDeleteType(scope.row)"
                 >
                   删除
                 </el-button>
@@ -49,46 +52,49 @@
             <div class="card-header">
               <span>字典数据</span>
               <el-button type="primary" size="small" @click="handleAddData">
-                <el-icon :size="16"><Plus /></el-icon>新增
+                <el-icon :size="16">
+                  <Plus/>
+                </el-icon>
+                新增
               </el-button>
             </div>
           </template>
           <el-input
-            v-model="dataSearch"
-            placeholder="请输入字典标签或键值"
-            clearable
-            size="small"
-            style="margin-bottom: 10px"
+              v-model="dataSearch"
+              placeholder="请输入字典标签或键值"
+              clearable
+              size="small"
+              style="margin-bottom: 10px"
           />
           <el-table
-            v-loading="dataListLoading"
-            :data="filteredDataList"
-            stripe
-            style="width: 100%"
+              v-loading="dataListLoading"
+              :data="filteredDataList"
+              stripe
+              style="width: 100%"
           >
-            <el-table-column prop="dictLabel" label="字典标签" width="180" />
-            <el-table-column prop="dictValue" label="字典键值" width="180" />
-            <el-table-column prop="dictSort" label="排序" width="80" />
+            <el-table-column prop="dictLabel" label="字典标签" width="180"/>
+            <el-table-column prop="dictValue" label="字典键值" width="180"/>
+            <el-table-column prop="dictSort" label="排序" width="80"/>
             <el-table-column prop="status" label="状态" width="100">
               <template #default="{ row }">
                 <el-tag
-                  :type="row.status === '0' ? 'success' : 'danger'"
-                  disable-transitions
+                    :type="row.status === '0' ? 'success' : 'danger'"
+                    disable-transitions
                 >
                   {{ row.status === "0" ? "正常" : "停用" }}
                 </el-tag>
               </template>
             </el-table-column>
-            <el-table-column prop="remark" label="备注" />
+            <el-table-column prop="remark" label="备注"/>
             <el-table-column label="操作" width="180">
               <template #default="scope">
                 <el-button size="small" @click="handleEditData(scope.row)">
                   编辑
                 </el-button>
                 <el-button
-                  size="small"
-                  type="danger"
-                  @click="handleDeleteData(scope.row)"
+                    size="small"
+                    type="danger"
+                    @click="handleDeleteData(scope.row)"
                 >
                   删除
                 </el-button>
@@ -96,13 +102,13 @@
             </el-table-column>
           </el-table>
           <el-pagination
-            v-if="total > 0"
-            :current-page="currentPage"
-            :page-size="pageSize"
-            :total="total"
-            layout="total, sizes, prev, pager, next, jumper"
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
+              v-if="total > 0"
+              :current-page="currentPage"
+              :page-size="pageSize"
+              :total="total"
+              layout="total, sizes, prev, pager, next, jumper"
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
           >
           </el-pagination>
         </el-card>
@@ -111,24 +117,24 @@
 
     <!-- 新增/编辑字典类型对话框 -->
     <el-dialog
-      :visible.sync="typeDialogVisible"
-      :title="dialogType === 'add' ? '新增字典类型' : '编辑字典类型'"
-      width="500px"
+        :visible.sync="typeDialogVisible"
+        :title="dialogType === 'add' ? '新增字典类型' : '编辑字典类型'"
+        width="500px"
     >
       <el-form
-        ref="typeForm"
-        :model="typeForm"
-        :rules="typeRules"
-        label-width="80px"
+          ref="typeForm"
+          :model="typeForm"
+          :rules="typeRules"
+          label-width="80px"
       >
-      <el-form-item label="字典id" v-show="false" :disabled="true" prop="dictId">
-          <el-input v-model="typeForm.dictId" />
+        <el-form-item label="字典id" v-show="false" :disabled="true" prop="dictId">
+          <el-input v-model="typeForm.dictId"/>
         </el-form-item>
         <el-form-item label="字典名称" prop="dictName">
-          <el-input v-model="typeForm.dictName" />
+          <el-input v-model="typeForm.dictName"/>
         </el-form-item>
         <el-form-item label="字典类型" prop="dictType">
-          <el-input v-model="typeForm.dictType" />
+          <el-input v-model="typeForm.dictType"/>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -141,24 +147,24 @@
 
     <!-- 新增/编辑字典数据对话框 -->
     <el-dialog
-      :visible.sync="dataDialogVisible"
-      :title="dialogType === 'add' ? '新增字典数据' : '编辑字典数据'"
-      width="500px"
+        :visible.sync="dataDialogVisible"
+        :title="dialogType === 'add' ? '新增字典数据' : '编辑字典数据'"
+        width="500px"
     >
       <el-form
-        ref="dataForm"
-        :model="dataForm"
-        :rules="dataRules"
-        label-width="80px"
+          ref="dataForm"
+          :model="dataForm"
+          :rules="dataRules"
+          label-width="80px"
       >
         <el-form-item label="字典标签" prop="dictLabel">
-          <el-input v-model="dataForm.dictLabel" />
+          <el-input v-model="dataForm.dictLabel"/>
         </el-form-item>
         <el-form-item label="字典键值" prop="dictValue">
-          <el-input v-model="dataForm.dictValue" />
+          <el-input v-model="dataForm.dictValue"/>
         </el-form-item>
         <el-form-item label="排序" prop="dictSort">
-          <el-input-number v-model="dataForm.dictSort" :min="0" />
+          <el-input-number v-model="dataForm.dictSort" :min="0"/>
         </el-form-item>
         <el-form-item label="状态" prop="status">
           <el-radio-group v-model="dataForm.status">
@@ -167,7 +173,7 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="备注" prop="remark">
-          <el-input v-model="dataForm.remark" type="textarea" />
+          <el-input v-model="dataForm.remark" type="textarea"/>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -188,7 +194,7 @@ import {
   deleteType,
 } from "@/api/staff/dict/type";
 import {
-  listData,
+  pageData,
   addData,
   updateData,
   deleteData,
@@ -200,10 +206,8 @@ export default {
     return {
       // 字典类型列表
       typeList: [],
-
       // 字典数据列表
       dataList: [],
-
       // 表单数据
       typeForm: {
         dictId: null,
@@ -223,20 +227,20 @@ export default {
       // 表单验证规则
       typeRules: {
         dictName: [
-          { required: true, message: "请输入字典名称", trigger: "blur" },
+          {required: true, message: "请输入字典名称", trigger: "blur"},
         ],
         dictType: [
-          { required: true, message: "请输入字典类型", trigger: "blur" },
+          {required: true, message: "请输入字典类型", trigger: "blur"},
         ],
       },
       dataRules: {
         dictLabel: [
-          { required: true, message: "请输入字典标签", trigger: "blur" },
+          {required: true, message: "请输入字典标签", trigger: "blur"},
         ],
         dictValue: [
-          { required: true, message: "请输入字典键值", trigger: "blur" },
+          {required: true, message: "请输入字典键值", trigger: "blur"},
         ],
-        dictSort: [{ required: true, message: "请输入排序", trigger: "blur" }],
+        dictSort: [{required: true, message: "请输入排序", trigger: "blur"}],
       },
 
       // 对话框
@@ -262,8 +266,8 @@ export default {
     filteredTypeList() {
       return this.typeList.filter((item) => {
         return (
-          !this.typeSearch ||
-          item.dictName.toLowerCase().includes(this.typeSearch.toLowerCase())
+            !this.typeSearch ||
+            item.dictName.toLowerCase().includes(this.typeSearch.toLowerCase())
         );
       });
     },
@@ -272,11 +276,11 @@ export default {
     filteredDataList() {
       return this.dataList.filter((item) => {
         return (
-          !this.dataSearch ||
-          item.dictLabel
-            .toLowerCase()
-            .includes(this.dataSearch.toLowerCase()) ||
-          item.dictValue.toLowerCase().includes(this.dataSearch.toLowerCase())
+            !this.dataSearch ||
+            item.dictLabel
+                .toLowerCase()
+                .includes(this.dataSearch.toLowerCase()) ||
+            item.dictValue.toLowerCase().includes(this.dataSearch.toLowerCase())
         );
       });
     },
@@ -299,18 +303,18 @@ export default {
     // 获取字典数据列表
     getDataList() {
       this.dataListLoading = true;
-      listData({
+      pageData({
         dictType: this.dataForm.dictType,
         currentPage: this.currentPage,
         pageSize: this.pageSize,
       })
-        .then((res) => {
-          this.dataList = res.data.list;
-          this.total = res.data.total;
-        })
-        .finally(() => {
-          this.dataListLoading = false;
-        });
+          .then((res) => {
+            this.dataList = res.data.list;
+            this.total = res.data.total;
+          })
+          .finally(() => {
+            this.dataListLoading = false;
+          });
     },
 
     // 处理每页条数改变
@@ -338,7 +342,6 @@ export default {
       this.dialogType = "edit";
       this.typeForm = Object.assign({}, row);
     },
-
     // 删除字典类型
     handleDeleteType(row) {
       this.$confirm("确定要删除该字典类型吗？", "提示", {
@@ -346,21 +349,23 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       })
-        .then(() => {
-          deleteType(row.dictId)
-            .then(() => {
-              this.$message.success("删除成功");
-              this.getTypeList();
-              // 如果删除的是当前选中的类型，则清空字典数据列表
-              if (row.dictType === this.dataForm.dictType) {
-                this.dataForm.dictType = "";
-                this.dataList = [];
-                this.total = 0;
-              }
-            })
-            .catch(() => {});
-        })
-        .catch(() => {});
+          .then(() => {
+            deleteType(row.dictId)
+                .then(() => {
+                  this.$message.success("删除成功");
+                  this.getTypeList();
+                  // 如果删除的是当前选中的类型，则清空字典数据列表
+                  if (row.dictType === this.dataForm.dictType) {
+                    this.dataForm.dictType = "";
+                    this.dataList = [];
+                    this.total = 0;
+                  }
+                })
+                .catch(() => {
+                });
+          })
+          .catch(() => {
+          });
     },
 
     // 提交字典类型表单
@@ -369,20 +374,22 @@ export default {
         if (valid) {
           if (this.dialogType === "add") {
             addType(this.typeForm)
-              .then(() => {
-                this.$message.success("新增成功");
-                this.typeDialogVisible = false;
-                this.getTypeList();
-              })
-              .catch(() => {});
+                .then(() => {
+                  this.$message.success("新增成功");
+                  this.typeDialogVisible = false;
+                  this.getTypeList();
+                })
+                .catch(() => {
+                });
           } else {
             updateType(this.typeForm)
-              .then(() => {
-                this.$message.success("修改成功");
-                this.typeDialogVisible = false;
-                this.getTypeList();
-              })
-              .catch(() => {});
+                .then(() => {
+                  this.$message.success("修改成功");
+                  this.typeDialogVisible = false;
+                  this.getTypeList();
+                })
+                .catch(() => {
+                });
           }
         }
       });
@@ -423,15 +430,17 @@ export default {
         cancelButtonText: "取消",
         type: "warning",
       })
-        .then(() => {
-          deleteData(row.dictCode)
-            .then(() => {
-              this.$message.success("删除成功");
-              this.getDataList();
-            })
-            .catch(() => {});
-        })
-        .catch(() => {});
+          .then(() => {
+            deleteData(row.dictCode)
+                .then(() => {
+                  this.$message.success("删除成功");
+                  this.getDataList();
+                })
+                .catch(() => {
+                });
+          })
+          .catch(() => {
+          });
     },
 
     // 提交字典数据表单
@@ -440,20 +449,22 @@ export default {
         if (valid) {
           if (this.dialogType === "add") {
             addData(this.dataForm)
-              .then(() => {
-                this.$message.success("新增成功");
-                this.dataDialogVisible = false;
-                this.getDataList();
-              })
-              .catch(() => {});
+                .then(() => {
+                  this.$message.success("新增成功");
+                  this.dataDialogVisible = false;
+                  this.getDataList();
+                })
+                .catch(() => {
+                });
           } else {
             updateData(this.dataForm)
-              .then(() => {
-                this.$message.success("修改成功");
-                this.dataDialogVisible = false;
-                this.getDataList();
-              })
-              .catch(() => {});
+                .then(() => {
+                  this.$message.success("修改成功");
+                  this.dataDialogVisible = false;
+                  this.getDataList();
+                })
+                .catch(() => {
+                });
           }
         }
       });

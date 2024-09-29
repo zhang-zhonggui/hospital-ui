@@ -7,6 +7,13 @@ export function listData(data) {
     data: data,
   });
 }
+export function pageData(data) {
+  return request({
+    url: "/dictData/page",
+    method: "post",
+    data: data,
+  });
+}
 
 export function addData(data) {
   return request({
