@@ -29,11 +29,11 @@ const routes = [
   {
     path: "/staff/login",
     name: "Staff",
-    component: () => import("@/views/staff/staff.vue"),
+    component: () => import("@/views/staff/StaffLogin.vue"),
   },
   {
     path: "/staff",
-    name: "StaffMain",
+    name: "main",
     component: () => import("@/views/staff/staffMain.vue"),
     children: [
       {
