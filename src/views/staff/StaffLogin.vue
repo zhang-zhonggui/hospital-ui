@@ -42,6 +42,7 @@
 
 <script>
 import { login } from "@/api/staff/login";
+import { setToken } from "@/utils/auth";
 
 export default {
   name: "StaffLogin",
@@ -81,6 +82,9 @@ export default {
                 message: "登录成功",
                 type: "success",
               });
+              console.log(response.data);
+              // 将token保存到本地
+              setToken(response.data);
               this.$router.push("/staff"); // 登录成功后跳转到主页面
             } else {
               this.$message({
