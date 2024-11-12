@@ -1,8 +1,10 @@
 import Vue from "vue";
+
 import VueRouter from "vue-router";
 import Index from "../views/index.vue";
 import ShowMessage from "@/views/news/showmessage.vue";
 import StaffInfo from "@/views/staff/StaffInfo.vue"; // 引入 StaffInfo 组件
+import NotFound from "../views/NotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -122,6 +124,11 @@ const routes = [
         component: () => import("../views/staff/DictManagement.vue"),
       },
     ],
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
+    component: NotFound,
   },
 ];
 

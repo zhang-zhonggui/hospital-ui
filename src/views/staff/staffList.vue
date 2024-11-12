@@ -22,7 +22,6 @@
         <input name="hehe" type="file" />
       </form>
       <el-button type="primary" @click="uploadSta()">导入</el-button> -->
-
     </el-form>
     <el-table :data="staffArr" style="width: 100%">
       <el-table-column prop="id" label="编号" width="80"></el-table-column>
@@ -47,34 +46,36 @@
 
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button type="text" size="small" @click="deleteStaff(scope.row.id)"
-          >删除
-          </el-button
-          >
           <el-button
-              type="text"
-              size="small"
-              @click="showUpdateDialog(scope.row.id)"
-          >编辑
-          </el-button
+            type="text"
+            size="small"
+            @click="deleteStaff(scope.row.id)"
           >
+            删除
+          </el-button>
+          <el-button
+            type="text"
+            size="small"
+            @click="showUpdateDialog(scope.row.id)"
+            >编辑
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
     <el-pagination
-        background
-        @current-change="handleCurrentChange"
-        layout="prev, pager, next"
-        :total="totalCount"
+      background
+      @current-change="handleCurrentChange"
+      layout="prev, pager, next"
+      :total="totalCount"
     >
     </el-pagination>
 
     <el-dialog title="添加员工" :visible.sync="dialogFormVisible">
       <el-form
-          :model="staffInfo"
-          :rules="rules"
-          ref="staffInfo"
-          label-width="80px"
+        :model="staffInfo"
+        :rules="rules"
+        ref="staffInfo"
+        label-width="80px"
       >
         <el-form-item label="员工姓名" prop="name">
           <el-input v-model="staffInfo.name"></el-input>
@@ -89,8 +90,8 @@
 
         <el-form-item label="年龄" prop="age">
           <el-input
-              v-model="staffInfo.age"
-              oninput="value=value.replace(/[^\d]/g,'')"
+            v-model="staffInfo.age"
+            oninput="value=value.replace(/[^\d]/g,'')"
           ></el-input>
         </el-form-item>
 
@@ -100,18 +101,18 @@
 
         <el-form-item label="员工电话" prop="phone">
           <el-input
-              v-model="staffInfo.phone"
-              oninput="value=value.replace(/[^\d]/g,'')"
+            v-model="staffInfo.phone"
+            oninput="value=value.replace(/[^\d]/g,'')"
           ></el-input>
         </el-form-item>
 
         <el-form-item label="部门" prop="bid">
           <el-select v-model="staffInfo.bid" placeholder="请选择入职部门">
             <el-option
-                v-for="b in bunameArr"
-                :key="b.id"
-                :label="b.buname"
-                :value="b.id"
+              v-for="b in bunameArr"
+              :key="b.id"
+              :label="b.buname"
+              :value="b.id"
             >
             </el-option>
           </el-select>
@@ -120,10 +121,10 @@
         <el-form-item label="科室" prop="kid">
           <el-select v-model="staffInfo.kid" placeholder="请选择入职科室">
             <el-option
-                v-for="k in keshiArr"
-                :label="k.keshi"
-                :key="k.id"
-                :value="k.id"
+              v-for="k in keshiArr"
+              :label="k.keshi"
+              :key="k.id"
+              :value="k.id"
             >
             </el-option>
           </el-select>
@@ -132,10 +133,10 @@
         <el-form-item label="职务" prop="tid">
           <el-select v-model="staffInfo.tid" placeholder="请选择职务或职称">
             <el-option
-                v-for="t in titleArr"
-                :key="t.id"
-                :label="t.title"
-                :value="t.id"
+              v-for="t in titleArr"
+              :key="t.id"
+              :label="t.title"
+              :value="t.id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -174,30 +175,30 @@
         <el-form-item label="部门" prop="bid">
           <el-select v-model="staffInfo.bid" placeholder="请选择部门">
             <el-option
-                v-for="b in bunameArr"
-                :key="b.id"
-                :label="b.buname"
-                :value="b.id"
+              v-for="b in bunameArr"
+              :key="b.id"
+              :label="b.buname"
+              :value="b.id"
             ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="职务" prop="tid">
           <el-select v-model="staffInfo.tid" placeholder="请选择职务">
             <el-option
-                v-for="t in titleArr"
-                :key="t.id"
-                :label="t.title"
-                :value="t.id"
+              v-for="t in titleArr"
+              :key="t.id"
+              :label="t.title"
+              :value="t.id"
             ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="科室" prop="kid">
           <el-select v-model="staffInfo.kid" placeholder="请选择科室">
             <el-option
-                v-for="k in keshiArr"
-                :key="k.id"
-                :label="k.keshi"
-                :value="k.id"
+              v-for="k in keshiArr"
+              :key="k.id"
+              :label="k.keshi"
+              :value="k.id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -260,20 +261,20 @@ export default {
       totalCount: 0,
       updateDialogFormVisible: false,
       rules: {
-        name: [{required: true, message: "请输入姓名", trigger: "blur"}],
-        age: [{required: true, message: "请输入年龄", trigger: "blur"}],
-        sex: [{required: true, message: "请输入性别", trigger: "blur"}],
-        education: [{required: true, message: "请输入学历", trigger: "blur"}],
+        name: [{ required: true, message: "请输入姓名", trigger: "blur" }],
+        age: [{ required: true, message: "请输入年龄", trigger: "blur" }],
+        sex: [{ required: true, message: "请输入性别", trigger: "blur" }],
+        education: [{ required: true, message: "请输入学历", trigger: "blur" }],
         phone: [
-          {required: true, message: "请输入手机号", trigger: "blur"},
-          {min: 11, max: 11, message: "请输入正确手机号", trigger: "blur"},
+          { required: true, message: "请输入手机号", trigger: "blur" },
+          { min: 11, max: 11, message: "请输入正确手机号", trigger: "blur" },
         ],
-        bid: [{required: true, message: "请选择部门", trigger: "change"}],
-        kid: [{required: true, message: "请选择科室", trigger: "change"}],
+        bid: [{ required: true, message: "请选择部门", trigger: "change" }],
+        kid: [{ required: true, message: "请选择科室", trigger: "change" }],
         tid: [
-          {required: true, message: "请选择职称/职务", trigger: "change"},
+          { required: true, message: "请选择职称/职务", trigger: "change" },
         ],
-        state: [{required: true, message: "请选择状态", trigger: "change"}],
+        state: [{ required: true, message: "请选择状态", trigger: "change" }],
       },
     };
   },
@@ -336,43 +337,71 @@ export default {
       });
     },
     deleteStaff(id) {
-      this.$confirm("此操作将永久删除该人员, 是否继续?", "温馨提示", {
+      this.$confirm("确定要删除该员工吗?", "删除确认", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning",
-      }).then(() => {
-        del(id).then((response) => {
-          this.$message.success(response.msg);
+      })
+        .then(() => {
+          del(id)
+            .then((response) => {
+              if (response.code === 200) {
+                this.$message.success("删除成功");
+              } else {
+                this.$message.error(response.data);
+              }
+            })
+            .catch(() => {
+              this.$message({
+                type: "info",
+                message: "已取消删除",
+              });
+            })
+            .finally(() => {
+              this.getData(1, 10);
+            });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除",
+          });
         });
-        this.getData(1, 10);
+    },
+    showUpdateDialog(id) {
+      updateDialog(id).then((response) => {
+        if (response.code === 200) {
+          this.staffInfo = response.data;
+          this.updateDialogFormVisible = true;
+        }
       });
     },
     exportSta() {
-      const fileName = '人员管理.xlsx'; // 将文件名提取为变量，方便修改
-
+      const fileName = "人员管理.xlsx"; // 将文件名提取为变量，方便修改
       exportStaffExcel(this.searchInfo)
-          .then((blob) => {
-            // 使用URL.createObjectURL()创建临时URL
-            const url = URL.createObjectURL(blob);
+        .then((blob) => {
+          // 使用URL.createObjectURL()创建临时URL
+          const url = URL.createObjectURL(blob);
 
-            // 创建<a>元素并设置属性
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = fileName; // 设置下载文件名
-            // 将<a>元素添加到DOM并模拟点击
-            document.body.appendChild(a);
-            a.click();
-            // 下载完成后清理资源
-            setTimeout(() => { // 延迟移除，确保下载完成
-              document.body.removeChild(a);
-              URL.revokeObjectURL(url);
-            }, 100); // 可以根据实际情况调整延迟时间
-            this.$message.success("导出成功");
-          })
-          .catch((error) => {
-            console.error("下载 Excel 失败:", error);
-            this.$message.error("导出失败，请稍后重试");
-          });
+          // 创建<a>元素并设置属性
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = fileName; // 设置下载文件名
+          // 将<a>元素添加到DOM并模拟点击
+          document.body.appendChild(a);
+          a.click();
+          // 下载完成后清理资源
+          setTimeout(() => {
+            // 延迟移除，确保下载完成
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+          }, 100); // 可以根据实际情况调整延迟时间
+          this.$message.success("导出成功");
+        })
+        .catch((error) => {
+          console.error("下载 Excel 失败:", error);
+          this.$message.error("导出失败，请稍后重试");
+        });
     },
     getData(a, b) {
       this.searchInfo.pageNO = a;
@@ -384,14 +413,7 @@ export default {
         }
       });
     },
-    showUpdateDialog(id) {
-      updateDialog(id).then((response) => {
-        if (response.code === 200) {
-          this.staffInfo = response.data;
-          this.updateDialogFormVisible = true;
-        }
-      });
-    },
+
     addStaffInfo() {
       this.dialogFormVisible = true;
       this.staffInfo = {};

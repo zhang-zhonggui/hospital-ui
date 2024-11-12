@@ -15,8 +15,8 @@
           <el-input
             v-model.trim="userForm.username"
             placeholder="请输入账号"
-            clearable
             autocomplete="off"
+            clearable
           />
         </el-form-item>
         <el-form-item label="密码" prop="password">
@@ -29,11 +29,8 @@
           />
         </el-form-item>
         <el-form-item class="button-group">
+          <el-button @click="goToRegister">注册</el-button>
           <el-button type="primary" @click="handleLogin">登录</el-button>
-          <el-button @click="resetForm">重置</el-button>
-          <router-link to="/register" class="register-link"
-            >注册账号</router-link
-          >
         </el-form-item>
       </el-form>
     </div>
@@ -103,6 +100,9 @@ export default {
     },
     resetForm() {
       this.$refs.loginForm.resetFields();
+    },
+    goToRegister() {
+      this.$router.push("/register");
     },
   },
 };
