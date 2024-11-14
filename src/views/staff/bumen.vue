@@ -124,7 +124,6 @@ export default {
   },
   mounted() {
     this.getData(1, 10)
-
   },
   methods: {
     getData(a, b) {
@@ -132,8 +131,8 @@ export default {
       this.searchInfo.pageCount = b;
       query(this.searchInfo).then(res => {
         if (res.code === 200) {
-          this.deptArr = res.data.currentData;
-          this.totalCount = res.data.totalCount;
+          this.deptArr = res.data.list;
+          this.totalCount = res.data.total;
         }
       })
     },

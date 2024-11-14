@@ -2,13 +2,31 @@
   <div id="staff">
     <el-form :inline="true" :model="searchInfo" class="demo-form-inline">
       <el-form-item label="姓名">
-        <el-input v-model="searchInfo.name" placeholder="姓名"></el-input>
+        <el-input v-model="searchInfo.name" placeholder="姓名" clearable></el-input>
       </el-form-item>
       <el-form-item label="科室">
-        <el-input v-model="searchInfo.keshi" placeholder="科室名称"></el-input>
+        <el-select v-model="searchInfo.keshi" placeholder="选择科室"  clearable>
+          <el-option
+            clearable
+            v-for="k in keshiArr"
+            :label="k.keshi"
+            :key="k.id"
+            :value="k.keshi"
+          >
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="职务">
-        <el-input v-model="searchInfo.title" placeholder="职务"></el-input>
+        <el-select v-model="searchInfo.title" placeholder="选择职务" clearable>
+          <el-option
+            v-for="t in titleArr"
+            :label="t.title"
+            :key="t.id"
+            :value="t.title"
+          >
+          </el-option>
+        </el-select>
+        <!-- <el-input v-model="searchInfo.title" placeholder="职务"></el-input> -->
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="seachInfo()">查询</el-button>
@@ -69,7 +87,6 @@
       :total="totalCount"
     >
     </el-pagination>
-
     <el-dialog title="添加员工" :visible.sync="dialogFormVisible">
       <el-form
         :model="staffInfo"

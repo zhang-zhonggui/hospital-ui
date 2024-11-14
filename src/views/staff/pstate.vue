@@ -50,15 +50,15 @@
           label="电话">
       </el-table-column>
       <el-table-column
-          prop="buname.buname"
+          prop="buname"
           label="部门">
       </el-table-column>
       <el-table-column
-          prop="title.title"
+          prop="title"
           label="职务">
       </el-table-column>
       <el-table-column
-          prop="keshi.keshi"
+          prop="keshi"
           label="科室">
       </el-table-column>
       <el-table-column prop="state" label="状态">
