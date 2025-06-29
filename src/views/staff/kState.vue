@@ -33,9 +33,9 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="danger" @click="changeDanger( scope.row.id)" v-if="scope.row.state=='已启用'">停用
+            <el-button type="danger" @click="changeDanger( scope.row.id)" v-if="scope.row.state=='启用'">停用
             </el-button>
-            <el-button type="success" @click="changeSuccess(scope.row.id)" v-if="scope.row.state=='未启用'">启用
+            <el-button type="success" @click="changeSuccess(scope.row.id)" v-if="scope.row.state=='禁用'">启用
             </el-button>
           </template>
 
@@ -120,15 +120,8 @@ export default {
       this.searchInfo.pageCount = b;
       query(this.searchInfo).then(res => {
         if (res.code === 200) {
-          this.KeShiArr = res.data.crrentData;
-          this.totalCount = res.data.totalCount;
-          for (var i = 0; i < this.KeShiArr.length; i++) {
-            if (this.KeShiArr[i].state === 0) {
-              this.KeShiArr[i].state = "已启用"
-            } else if (this.KeShiArr[i].state === 1) {
-              this.KeShiArr[i].state = "未启用"
-            }
-          }
+          this.KeShiArr = res.data.list;
+          this.totalCount = res.data.total;
         }
       })
     },

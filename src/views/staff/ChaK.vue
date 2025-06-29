@@ -105,7 +105,8 @@ export default {
       totalCount: 0,
     }
   },
-  mounted() {
+  created() {
+    console.log('ChaK created', this._uid, new Date().toISOString());
     this.getData(1, 10)
   },
   methods: {
@@ -165,19 +166,20 @@ export default {
       this.$refs["KeShiInfo"].resetFields()
     },
     getData(a, b) {
+      console.log('getData called', a, b, new Date().toISOString());
       this.searchInfo.pageNO = a;
       this.searchInfo.pageCount = b;
       query(this.searchInfo).then(res => {
         if (res.code === 200) {
-          this.KeShiArr = res.data.crrentData;
-          this.totalCount = res.data.totalCount;
-          for (var i = 0; i < this.KeShiArr.length; i++) {
-            if (this.KeShiArr[i].state === 0) {
-              this.KeShiArr[i].state = "已启用"
-            } else if (this.KeShiArr[i].state === 1) {
-              this.KeShiArr[i].state = "未启用"
-            }
-          }
+          this.KeShiArr = res.data.list;
+          this.totalCount = res.data.total;
+          // for (var i = 0; i < this.KeShiArr.length; i++) {
+          //   if (this.KeShiArr[i].state === 0) {
+          //     this.KeShiArr[i].state = "已启用"
+          //   } else if (this.KeShiArr[i].state === 1) {
+          //     this.KeShiArr[i].state = "未启用"
+          //   }
+          // }
         }
       })
     },

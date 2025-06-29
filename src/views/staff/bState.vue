@@ -2,7 +2,8 @@
   <div id="bState">
     <el-form>
       <el-input size="medium" placeholder="请输入部门" style="display: inline-block;width: 200px;"
-                v-model="searchInfo.name">
+                v-model.trim="searchInfo.name"
+                >
       </el-input>
 
       <el-button type="primary" @click="deptSearch()">查询</el-button>
@@ -28,9 +29,9 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button type="danger" @click="changeDanger( scope.row.id)" v-if="scope.row.state=='已启用'">停用
+            <el-button type="danger" @click="changeDanger( scope.row.id)" v-if="scope.row.state=='启用'">停用
             </el-button>
-            <el-button type="success" @click="changeSuccess(scope.row.id)" v-if="scope.row.state=='未启用'">启用
+            <el-button type="success" @click="changeSuccess(scope.row.id)" v-if="scope.row.state=='禁用'">启用
             </el-button>
           </template>
 
@@ -105,15 +106,8 @@ export default {
       this.searchInfo.pageCount = b;
       query(this.searchInfo).then(res => {
         if (res.code === 200) {
-          this.deptArr = res.data.currentData;
-          this.totalCount = res.data.totalCount;
-          for (var i = 0; i < this.deptArr.length; i++) {
-            if (this.deptArr[i].state === 0) {
-              this.deptArr[i].state = "已启用"
-            } else if (this.deptArr[i].state === 1) {
-              this.deptArr[i].state = "未启用"
-            }
-          }
+          this.deptArr = res.data.list;
+          this.totalCount = res.data.total;
         }
       })
     }

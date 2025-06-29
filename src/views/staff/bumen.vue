@@ -15,14 +15,7 @@
         <el-table-column prop="name" label="部门">
         </el-table-column>
         <el-table-column prop="state" label="状态">
-          <template slot-scope="scope">
-                    <span v-if="scope.row.state=== 0">
-                 <div class="state-icon icon0"></div>开启
-             </span>
-            <span v-if="scope.row.state === 1">
-                 <div class="state-icon icon1"></div>关闭
-             </span>
-          </template>
+          
         </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
@@ -47,7 +40,6 @@
             <el-select v-model="Department.state" placeholder="请选择状态">
               <el-option label="开启" value="0"></el-option>
               <el-option label="关闭" value="1"></el-option>
-
             </el-select>
           </el-form-item>
         </el-form>

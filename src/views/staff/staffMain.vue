@@ -63,9 +63,11 @@
               :label="item.name"
               :name="item.id"
             >
-              <router-view />
+              <!-- 不要在这里写 <router-view /> -->
             </el-tab-pane>
           </el-tabs>
+          <!-- 只在这里写一个 router-view -->
+          <router-view />
         </el-main>
       </el-container>
     </el-container>
@@ -157,6 +159,9 @@ export default {
         this.$router.push({ name: "Staff" });
       }
     });
+  },
+  created() {
+    console.log("staffMain created", this._uid);
   },
 };
 </script>
